@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Andy Gup
  *
  * Copyright 2016 Esri
@@ -46,6 +46,8 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.List;
+
+import android.provider.Settings.Secure;
 
 /**
  * Threadsafe class for converting location data into JSON
@@ -121,6 +123,30 @@ public final class JSONHelper {
 
         if(location != null){
             try {
+
+        boolean isMock = false;
+        if (Build.VERSION.SDK_INT < 18) {
+        if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        {
+        isMock = false;
+        }
+        else
+        {
+        isMock = true;
+        }
+        }
+        else
+        {
+        isMock = location.isFromMockProvider();
+        }
+        if (isMock==true)
+        {
+        json.put("provider", "mock");
+        }
+        else
+        {
+        json.put("provider", provider);
+        }
 
                 json.put("provider", provider);
                 json.put("latitude", location.getLatitude());
