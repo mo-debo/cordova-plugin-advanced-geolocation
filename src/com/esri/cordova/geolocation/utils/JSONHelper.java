@@ -47,8 +47,6 @@ import org.json.JSONObject;
 import java.util.Calendar;
 import java.util.List;
 
-import android.provider.Settings.Secure;
-
 /**
  * Threadsafe class for converting location data into JSON
  */
