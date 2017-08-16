@@ -39,7 +39,7 @@ import android.util.Log;
 
 import com.esri.cordova.geolocation.model.Error;
 import com.esri.cordova.geolocation.model.StopLocation;
-
+import android.provider.Settings.Secure;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,8 +121,30 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-
-                json.put("provider", provider);
+		boolean isMock = false;
+        if (Build.VERSION.SDK_INT < 18) {
+        if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        {
+        isMock = false;
+        }
+        else
+        {
+        isMock = true;
+        }
+        }
+        else
+        {
+        isMock = location.isFromMockProvider();
+        }
+        if (isMock==true)
+        {
+        json.put("provider", "mock");
+        }
+        else
+        {
+        json.put("provider", provider);
+        }
+                //json.put("provider", provider);
                 json.put("latitude", location.getLatitude());
                 json.put("longitude", location.getLongitude());
                 json.put("altitude", location.getAltitude());
@@ -166,8 +188,30 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-
-                json.put("provider", provider);
+		boolean isMock = false;
+        if (Build.VERSION.SDK_INT < 18) {
+        if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        {
+        isMock = false;
+        }
+        else
+        {
+        isMock = true;
+        }
+        }
+        else
+        {
+        isMock = location.isFromMockProvider();
+        }
+        if (isMock==true)
+        {
+        json.put("provider", "mock");
+        }
+        else
+        {
+        json.put("provider", provider);
+        }
+                //json.put("provider", provider);
                 json.put("timestamp", location.getTime());
                 json.put("latitude", location.getLatitude());
                 json.put("longitude", location.getLongitude());
