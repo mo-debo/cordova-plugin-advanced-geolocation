@@ -121,7 +121,7 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-		static boolean isMock = false;
+		 boolean isMock = false;
         if (Build.VERSION.SDK_INT < 18) {
         if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
         {
