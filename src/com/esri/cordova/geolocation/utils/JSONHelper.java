@@ -122,18 +122,28 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-        boolean isMock = false;
+        
+boolean isMock = false;
         if (Build.VERSION.SDK_INT < 18) {
         if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        {
         isMock = false;
+        }
         else
+        {
         isMock = true;
-        } else {
+        }
+        } 
+        else 
+        {
         isMock = location.isFromMockProvider();
         }
-        if (!isMock) {
+        if (isMock==true) 
+        {
         json.put("provider", "mock");
-        }else{
+        }
+        else
+        {
         json.put("provider", provider);
         }
                 //json.put("provider", provider);
