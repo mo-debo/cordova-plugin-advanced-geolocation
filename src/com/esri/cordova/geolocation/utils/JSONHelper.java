@@ -188,14 +188,14 @@ public final class JSONHelper {
             try {
 		boolean isMock = false;
         if (Build.VERSION.SDK_INT < 18) {
-        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        /*if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
         {
         isMock = false;
         }
         else
         {
         isMock = true;
-        }
+        }*/
         }
         else
         {
