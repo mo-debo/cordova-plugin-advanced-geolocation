@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Andy Gup
  *
  * Copyright 2016 Esri
@@ -121,8 +121,21 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-
-                json.put("provider", provider);
+        boolean isMock = false;
+        if (android.os.Build.VERSION.SDK_INT < 18) {
+        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        isMock = false;
+        else
+        isMock = true;
+        } else {
+        isMock = location.isFromMockProvider();
+        }
+        if (!isMock) {
+        json.put("provider", "mock");
+        }else{
+        json.put("provider", provider);
+        }
+                //json.put("provider", provider);
                 json.put("latitude", location.getLatitude());
                 json.put("longitude", location.getLongitude());
                 json.put("altitude", location.getAltitude());
@@ -166,8 +179,21 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-
-                json.put("provider", provider);
+        boolean isMock = false;
+        if (android.os.Build.VERSION.SDK_INT < 18) {
+        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        isMock = false;
+        else
+        isMock = true;
+        } else {
+        isMock = location.isFromMockProvider();
+        }
+        if (!isMock) {
+        json.put("provider", "mock");
+        }else{
+        json.put("provider", provider);
+        }
+                //json.put("provider", provider);
                 json.put("timestamp", location.getTime());
                 json.put("latitude", location.getLatitude());
                 json.put("longitude", location.getLongitude());
