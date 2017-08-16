@@ -66,6 +66,15 @@ public final class JSONHelper {
      * @return A JSONObject containing an array that lists each provider and boolean indicating
      * whether or not the stop location attempt was successful.
      */
+ public boolean isMockSettingsON() {
+        // returns true if mock location enabled, false if not enabled.
+        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(),
+                                    Settings.Secure.ALLOW_MOCK_LOCATION).equals("0")) {
+            return false;
+        } else {
+            return true;
+        }
+    } 
     public static String stopLocationJSON(List<StopLocation> stopLocation) {
         final JSONArray jsonArray = new JSONArray();
         final JSONObject stopLocationDetails = new JSONObject();
@@ -119,16 +128,16 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-		/* boolean isMock = false;
+		boolean isMock = false;
         if (Build.VERSION.SDK_INT < 18) {
-        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        /*if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
         {
         isMock = false;
         }
         else
         {
         isMock = true;
-        }
+        }*/
         }
         else
         {
@@ -141,8 +150,8 @@ public final class JSONHelper {
         else
         {
         json.put("provider", provider);
-        }*/
-                json.put("provider", provider);
+        }
+                //json.put("provider", provider);
                 json.put("latitude", location.getLatitude());
                 json.put("longitude", location.getLongitude());
                 json.put("altitude", location.getAltitude());
