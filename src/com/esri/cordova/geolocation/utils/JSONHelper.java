@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @author Andy Gup
  *
  * Copyright 2016 Esri
