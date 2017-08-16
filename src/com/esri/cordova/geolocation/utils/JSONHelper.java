@@ -66,15 +66,7 @@ public final class JSONHelper {
      * @return A JSONObject containing an array that lists each provider and boolean indicating
      * whether or not the stop location attempt was successful.
      */
- public boolean isMockSettingsON() {
-        // returns true if mock location enabled, false if not enabled.
-        if (Secure.getString(this.cordova.getActivity().getContentResolver(),
-                                    Secure.ALLOW_MOCK_LOCATION).equals("0")) {
-            return false;
-        } else {
-            return true;
-        }
-    } 
+
     public static String stopLocationJSON(List<StopLocation> stopLocation) {
         final JSONArray jsonArray = new JSONArray();
         final JSONObject stopLocationDetails = new JSONObject();
