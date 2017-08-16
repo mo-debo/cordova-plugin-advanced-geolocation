@@ -68,8 +68,8 @@ public final class JSONHelper {
      */
  public boolean isMockSettingsON() {
         // returns true if mock location enabled, false if not enabled.
-        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(),
-                                    Settings.Secure.ALLOW_MOCK_LOCATION).equals("0")) {
+        if (Secure.getString(this.cordova.getActivity().getContentResolver(),
+                                    Secure.ALLOW_MOCK_LOCATION).equals("0")) {
             return false;
         } else {
             return true;
