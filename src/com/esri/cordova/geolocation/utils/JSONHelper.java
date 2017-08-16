@@ -36,7 +36,6 @@ import android.telephony.SignalStrength;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
-import android.util.Settings;
 import com.esri.cordova.geolocation.model.Error;
 import com.esri.cordova.geolocation.model.StopLocation;
 import android.provider.Settings.Secure;
@@ -46,7 +45,7 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.List;
-
+import android.util.Settings;
 /**
  * Threadsafe class for converting location data into JSON
  */
@@ -123,7 +122,7 @@ public final class JSONHelper {
             try {
 		 boolean isMock = false;
         if (Build.VERSION.SDK_INT < 18) {
-        if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
+        if (Settings.Secure.getString(this.cordova.getActivity().getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION).equals("0"))
         {
         isMock = false;
         }
