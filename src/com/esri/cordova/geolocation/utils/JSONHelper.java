@@ -36,7 +36,7 @@ import android.telephony.SignalStrength;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
-
+import android.util.Settings;
 import com.esri.cordova.geolocation.model.Error;
 import com.esri.cordova.geolocation.model.StopLocation;
 import android.provider.Settings.Secure;
@@ -121,7 +121,7 @@ public final class JSONHelper {
 
         if(location != null){
             try {
-		boolean isMock = false;
+		static boolean isMock = false;
         if (Build.VERSION.SDK_INT < 18) {
         if (Secure.getString(this.cordova.getActivity().getContentResolver(), Secure.ALLOW_MOCK_LOCATION).equals("0"))
         {
